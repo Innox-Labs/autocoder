@@ -1,0 +1,7 @@
+{
+  "date_of_service": "2026-03-12",
+  "encounter_type": "urgent_care",
+  "expected_codes": ["R05.9", "R50.9"],
+  "first_listed": "R05.9",
+  "notes": "Outpatient uncertain-dx rule: 'probable pneumonia' must NOT be coded (no J18.9); the documented symptoms cough (R05.9) and fever (R50.9) are coded instead."
+}

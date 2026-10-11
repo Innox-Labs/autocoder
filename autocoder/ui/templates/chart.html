@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Chart {{ chart.chart_id }}{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Chart {{ chart.chart_id }}
+    <span class="badge {{ chart.routing }}">{{ chart.routing }}</span>
+  </h1>
+  <p>
+    DOS {{ chart.document.date_of_service }} · {{ chart.document.encounter_type }}
+    · terminology {{ chart.pipeline_versions.get("terminology", "?") }}
+    · reasoner {{ chart.pipeline_versions.get("reasoner", "?") }}
+  </p>
+  {% if chart.routing_reasons %}
+  <ul>
+    {% for r in chart.routing_reasons %}<li>{{ r }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+<div class="cols">
+  <div class="card note">
+    <h2>Note (evidence highlighted)</h2>
+    <div class="notetext">{{ note_html | safe }}</div>
+  </div>
+
+  <div class="card codes">
+    <h2>Assigned codes</h2>
+    <table>
+      <tr><th></th><th>Code</th><th>Description</th><th>Confidence</th></tr>
+      {% for code in chart.codes %}
+      <tr onmouseover="hl('{{ code.code }}', true)" onmouseout="hl('{{ code.code }}', false)">
+        <td>{% if code.first_listed %}<span class="badge first">1st</span>{% endif %}</td>
+        <td><b style="border-bottom: 3px solid {{ colors.get(code.code, '#ff0') }}">{{ code.code }}</b></td>
+        <td>{{ code.description }}<br>
+            <small>{{ code.rationale }}</small>
+            {% if code.rule_flags %}<br><small style="color:#a03a30">{{ code.rule_flags | join("; ") }}</small>{% endif %}
+        </td>
+        <td>
+          <div class="conf-bar"><div style="width: {{ (code.confidence * 100) | round }}%"></div></div>
+          {{ code.confidence }}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    {% if chart.abstentions %}
+    <h2>Open questions (reasoner abstained)</h2>
+    <ul>
+      {% for a in chart.abstentions %}<li>{{ a.reason }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+
+    <details>
+      <summary>Debug: codable facts ({{ chart.facts | length }})</summary>
+      <table>
+        <tr><th>Fact</th><th>Text</th><th>Section</th><th>Context</th><th>Flags</th></tr>
+        {% for f in chart.facts %}
+        <tr>
+          <td>{{ f.fact_id }}</td>
+          <td>{{ f.entity_text }}</td>
+          <td>{{ f.section }}</td>
+          <td><small>{{ f.negation }}/{{ f.temporality }}/{{ f.certainty }}/{{ f.experiencer }}</small></td>
+          <td><small>{{ f.flags | join(", ") }} {{ f.attributes }}</small></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </details>
+    <details>
+      <summary>Debug: candidates per fact</summary>
+      <pre>{{ candidates_json }}</pre>
+    </details>
+  </div>
+</div>
+
+<script>
+function hl(code, on) {
+  document.querySelectorAll(`mark[data-code="${code}"]`).forEach(m => {
+    m.style.outline = on ? "2px solid #0D6E6E" : "none";
+  });
+}
+</script>
+{% endblock %}

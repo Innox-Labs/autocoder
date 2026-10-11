@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}AutoCoder — Upload{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Code an outpatient note</h1>
+  <p>Upload a clinical note (.txt or digital .pdf). The pipeline extracts
+     entities, filters by outpatient codability rules, retrieves ICD-10-CM
+     candidates from the release in force on the date of service, and assigns
+     codes with evidence.</p>
+  <form action="/charts" method="post" enctype="multipart/form-data">
+    <label>Clinical note</label>
+    <input type="file" name="file" accept=".txt,.pdf" required>
+    <label>Date of service</label>
+    <input type="date" name="dos" value="{{ today }}" required>
+    <label>Encounter type</label>
+    <select name="encounter">
+      <option value="office_visit">Office visit</option>
+      <option value="clinic">Clinic</option>
+      <option value="urgent_care">Urgent care</option>
+    </select>
+    <p><button type="submit">Run coding pipeline</button></p>
+  </form>
+</div>
+{% endblock %}

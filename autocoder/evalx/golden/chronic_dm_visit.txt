@@ -1,0 +1,25 @@
+CHIEF COMPLAINT
+Follow-up of type 2 diabetes mellitus.
+
+HISTORY OF PRESENT ILLNESS
+58-year-old patient returns for routine follow-up of type 2 diabetes mellitus.
+Reports good adherence to metformin. Denies chest pain, denies polyuria.
+Home glucose readings averaging 130-150.
+
+PAST MEDICAL HISTORY
+Type 2 diabetes mellitus. Essential hypertension.
+
+FAMILY HISTORY
+Mother had breast cancer.
+
+MEDICATIONS
+Metformin 1000 mg twice daily. Lisinopril 20 mg daily.
+
+PHYSICAL EXAM
+Blood pressure 142/88. Feet without ulcers.
+
+ASSESSMENT AND PLAN
+1. Type 2 diabetes mellitus without complications - continue metformin,
+   recheck hemoglobin A1c in 3 months.
+2. Essential hypertension, suboptimally controlled - increase lisinopril
+   to 40 mg daily.

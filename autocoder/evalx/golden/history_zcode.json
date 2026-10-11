@@ -1,0 +1,7 @@
+{
+  "date_of_service": "2026-04-02",
+  "encounter_type": "office_visit",
+  "expected_codes": ["Z00.00", "E78.5", "Z85.038"],
+  "first_listed": "Z00.00",
+  "notes": "Resolved colon cancer must map to personal-history Z85.038, not an active C18 code. Hyperlipidemia is actively medicated and coded."
+}

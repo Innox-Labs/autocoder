@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}AutoCoder — Worklist{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Coded charts</h1>
+  {% if charts %}
+  <table>
+    <tr><th>Chart</th><th>Date of service</th><th>Encounter</th><th>Codes</th><th>Routing</th></tr>
+    {% for c in charts %}
+    <tr>
+      <td><a href="/charts/{{ c.chart_id }}">{{ c.chart_id }}</a></td>
+      <td>{{ c.dos }}</td>
+      <td>{{ c.encounter }}</td>
+      <td>{{ c.n_codes }}</td>
+      <td><span class="badge {{ c.routing }}">{{ c.routing }}</span></td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>No charts yet. <a href="/">Upload a note</a> to get started.</p>
+  {% endif %}
+</div>
+{% endblock %}

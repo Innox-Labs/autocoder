@@ -1,0 +1,7 @@
+{
+  "date_of_service": "2026-03-10",
+  "encounter_type": "office_visit",
+  "expected_codes": ["E11.9", "I10"],
+  "first_listed": "E11.9",
+  "notes": "Traps: negated chest pain/polyuria must not be coded; family-history breast cancer must not be coded."
+}
